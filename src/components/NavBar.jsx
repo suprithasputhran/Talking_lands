@@ -1,12 +1,40 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import PublicIcon from '@mui/icons-material/Public';
+import PlaceIcon from '@mui/icons-material/Place';
+import '../assets/style.css';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
+
+    const navigate = useNavigate();
     return (
-        <div className='h-screen font-bold font-Roboto w-56 pl-9 pt-24  bg-blue-400 bg-opacity-50 text-white absolute flex flex-col items-start justify-start gap-10 text-2xl shadow-2xl shadow-black'>
-            <NavLink to="/">Multiple Point</NavLink>
-            <NavLink to="/polygonmap">Polygon</NavLink>
-        </div>
+
+        <SideNav className="side-bar " onSelect={(selected) => { navigate('/' + selected) }} >
+            <SideNav.Toggle />
+            <SideNav.Nav defaultSelected="/">
+                <NavItem eventKey="" >
+                    <NavIcon ><PlaceIcon style={{
+                        color: 'white',
+                    }} /></NavIcon>
+                    <NavText style={{
+                        fontSize: '1.25rem',
+                        color: 'white'
+                    }} >Multipoint</NavText>
+                </NavItem>
+                <NavItem eventKey="polygon">
+                    <NavIcon> <PublicIcon style={{
+                        color: 'white',
+                    }} /></NavIcon>
+                    <NavText style={{
+                        fontSize: '1.25rem',
+                        color: 'white'
+                    }}> Polygon</NavText>
+                </NavItem>
+            </SideNav.Nav>
+
+        </SideNav >
+
     )
 }
 
